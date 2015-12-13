@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class DemoSortingPersons {
 
@@ -17,6 +18,21 @@ public class DemoSortingPersons {
             System.out.println("Name: " + item.getName() +
                                 " Age: " + item.getAge() +
                                 " docNumber: " + item.getDocNumber());
+        }
+        System.out.println();
+
+        Arrays.sort(persons, new Comparator<Person>() {
+
+            @Override
+            public int compare(Person first, Person second) {
+                return first.getName().compareTo(second.getName());
+            }
+        });
+
+        for (Person item : persons) {
+            System.out.println("Name: " + item.getName() +
+                    " Age: " + item.getAge() +
+                    " docNumber: " + item.getDocNumber());
         }
     }
 }
