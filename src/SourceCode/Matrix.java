@@ -21,14 +21,6 @@ public class Matrix implements Cloneable {
         }
     }
 
-    public int sizeRow() {
-        return this.matrix.length;
-    }
-
-    public int sizeColumn() {
-        return this.matrix[0].length;
-    }
-
     public Matrix clone() throws CloneNotSupportedException {
         Matrix clone = (Matrix)super.clone();
         clone.matrix = new double[matrix.length][matrix[0].length];
@@ -37,6 +29,14 @@ public class Matrix implements Cloneable {
             clone.matrix[i] = this.matrix[i].clone();
         }
         return clone;
+    }
+
+    public int sizeRow() {
+        return this.matrix.length;
+    }
+
+    public int sizeColumn() {
+        return this.matrix[0].length;
     }
 
     public void setItem(int indexRow, int indexColumn, double value) {
