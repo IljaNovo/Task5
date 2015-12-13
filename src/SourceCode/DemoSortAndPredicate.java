@@ -39,7 +39,7 @@ public class DemoSortAndPredicate {
         // Demonstration Predicate
         Integer[] elems = {1, 2, 3, 4, 5, 6};
         
-        Integer[] searchElems = ArrayUntil.selectValues(null, new Predicate<Integer>() {
+        Integer[] searchElems = ArrayUntil.selectValues(elems, new Predicate<Integer>() {
 
             @Override
             public boolean checkCondition(Integer obj) {

@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class ArrayUntil {
     public static  <T> T[] selectValues (T[] array, Predicate<? super T> pred) {
         if (array == null) {
-            
+            throw new NullArrayExeption();
         }
 
         T[] foundItems = (T[]) Array.newInstance(array.getClass().getComponentType(), array.length);
@@ -18,7 +18,7 @@ public class ArrayUntil {
         T[] foundItemsCopy = null;
 
         if (foundItems.length != countElems) {
-            foundItemsCopy = Arrays.copyOfRange(foundItems, 0, countElems - 1);
+            foundItemsCopy = Arrays.copyOfRange(foundItems, 0, countElems);
         }
         return foundItemsCopy;
     }
