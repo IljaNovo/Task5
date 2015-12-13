@@ -24,11 +24,11 @@ public class Person implements Comparable<Person> {
     private void createBirthday(int day, int month, int year) {
         if (checkValidityDate(day, month, year)) {
             this.birthday.set(Calendar.DAY_OF_MONTH, day);
-            this.birthday.set(Calendar.MONTH, month);
+            this.birthday.set(Calendar.MONTH, month - 1);
             this.birthday.set(Calendar.YEAR, year);
         } else {
             this.birthday.set(Calendar.DAY_OF_MONTH, 1);
-            this.birthday.set(Calendar.MONTH, 1);
+            this.birthday.set(Calendar.MONTH, 0);
             this.birthday.set(Calendar.YEAR, 2015);
         }
     }
@@ -50,7 +50,7 @@ public class Person implements Comparable<Person> {
     }
 
     public int getMonthBirthday() {
-        return birthday.get(Calendar.MONTH);
+        return birthday.get(Calendar.MONTH) + 1;
     }
 
     public int getDayOfMonthBirthday() {
@@ -64,13 +64,24 @@ public class Person implements Comparable<Person> {
     }
 
     public int getAge() {
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        return currentYear - birthday.get(Calendar.YEAR);
+        int curDayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int curMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int curYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        if (curMonth < getMonthBirthday()) {
+            return curYear - birthday.get(Calendar.YEAR) - 1;
+        }
+        if (curMonth == getMonthBirthday()) {
+            if (curDayOfMonth < getDayOfMonthBirthday()) {
+                return curYear - birthday.get(Calendar.YEAR) - 1;
+            }
+        }
+        return curYear - birthday.get(Calendar.YEAR);
     }
 
     @Override
     public int compareTo(Person entry) {
-        int result = this.name.compareTo(entry.name);
+        int result =  ((Integer)this.getAge()).compareTo((Integer)entry.getAge());
         if (result != 0) {
             return result;
         }
