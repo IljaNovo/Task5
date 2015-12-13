@@ -8,14 +8,19 @@ public class Person implements Comparable<Person> {
     private GregorianCalendar birthday;
 
     public Person(int day, int month, int year) {
-        this.name = "no name";
+        this.name = "No Name";
         this.docNumber = UniqueNumber.generate();
         this.birthday = new GregorianCalendar();
         createBirthday(day, month, year);
     }
 
     public Person(String name, int day, int month, int year) {
-        this.name = name;
+        if (name == null || name == "") {
+            this.name = "No Name";
+        }
+        else {
+            this.name = name;
+        }
         this.docNumber = UniqueNumber.generate();
         this.birthday = new GregorianCalendar();
         createBirthday(day, month, year);

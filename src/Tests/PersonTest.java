@@ -5,6 +5,12 @@ import java.util.Calendar;
 import static org.junit.Assert.*;
 
 public class PersonTest {
+    @Test
+    public void testEmptyName() throws Exception {
+        Person person = new Person(null, 15, 12, 1993);
+
+        assertEquals(person.getName(), "No Name");
+    }
 
     @Test
     public void testUniqDocNumber() throws Exception {
@@ -61,5 +67,15 @@ public class PersonTest {
         Person personSecond = new Person("Vasya Pupkin", 15, 12, 1992);
 
         assertEquals(personFirst.compareTo(personSecond), -1);
+    }
+
+    @Test
+    public void testEnterIncorrectDate() throws Exception {
+        Person person = new Person("Vasya Pupkin", 45, -1, -1993);
+
+        assertEquals(person.getDayOfMonthBirthday(), 1);
+        assertEquals(person.getMonthBirthday(), 1);
+        assertEquals(person.getYearBirthday(), 2015);
+
     }
 }
