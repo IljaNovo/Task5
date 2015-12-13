@@ -1,9 +1,11 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class DemoSortingPersons {
+public class DemoSortAndPredicate {
 
     public static void main(String[] args) {
+        // Demonstration Sorting of Persons 
+
         Person[] persons = new Person[5];
 
         persons[0] = new Person("Vasya Pupkin", 1, 1, 1993);
@@ -28,11 +30,30 @@ public class DemoSortingPersons {
                 return first.getName().compareTo(second.getName());
             }
         });
-
         for (Person item : persons) {
             System.out.println("Name: " + item.getName() +
                     " Age: " + item.getAge() +
                     " docNumber: " + item.getDocNumber());
+        }
+
+        // Demonstration Predicate
+        Integer[] elems = {1, 2, 3, 4, 5, 6};
+        
+        Integer[] searchElems = ArrayUntil.selectValues(null, new Predicate<Integer>() {
+
+            @Override
+            public boolean checkCondition(Integer obj) {
+                if ((obj % 2) == 0)
+                    return true;
+                else {
+                    return false;
+                }
+            }
+        });
+        int counter = 1;
+
+        for (Integer item : searchElems) {
+            System.out.format("Item %d: %d%n", counter++, item);
         }
     }
 }

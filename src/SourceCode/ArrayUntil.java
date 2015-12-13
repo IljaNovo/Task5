@@ -2,7 +2,11 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class ArrayUntil {
-    public <T> T[] selectValues (T[] array, Predicate<? super T> pred) {
+    public static  <T> T[] selectValues (T[] array, Predicate<? super T> pred) {
+        if (array == null) {
+            
+        }
+
         T[] foundItems = (T[]) Array.newInstance(array.getClass().getComponentType(), array.length);
         int countElems = 0;
 
@@ -11,11 +15,11 @@ public class ArrayUntil {
                 foundItems[countElems++] = array[i];
             }
         }
-        T[] foundItemsCopy;
+        T[] foundItemsCopy = null;
 
         if (foundItems.length != countElems) {
-            foundItemsCopy = Arrays.copyOfRange(foundItems, countElems - 1, foundItems.length);
+            foundItemsCopy = Arrays.copyOfRange(foundItems, 0, countElems - 1);
         }
-        return foundItems;
+        return foundItemsCopy;
     }
 }
